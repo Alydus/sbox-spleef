@@ -1,10 +1,12 @@
 ﻿using SandboxEditor;
+using Sandbox;
+using Alydus.Spleef;
 
-namespace Sandbox.entities;
+namespace Spleef.entities;
 
-[Library( "platform" )]
+//[Library( "platform" )]
 [HammerEntity, Model, RenderFields, VisGroup( VisGroup.Physics )]
-[Title( "Platform" ), Category( "Gameplay" ), Icon( "chair" )]
+//[Title( "Platform" ), Category( "Gameplay" ), Icon( "chair" )]
 public partial class Platform : BasePhysics
 {
 	[Net]
@@ -16,18 +18,40 @@ public partial class Platform : BasePhysics
 	{
 		base.Spawn();
 
-		PhysicsEnabled = false;
+		var modelName = "models/citizen_props/crate01.vmdl";
+
+		SetModel( modelName );
+
+		SetupPhysicsFromModel( PhysicsMotionType.Static, true );
+		EnableSelfCollisions = false;
+
+		var trigger = new ModelEntity
+		{
+			Parent = this,
+			Position = Position,
+			Rotation = Rotation,
+			EnableTouch = true,
+			Transmit = TransmitType.Never,
+			EnableSelfCollisions = false
+		};
 	}
 
-	protected override void OnPhysicsCollision( CollisionEventData eventData )
+	//protected override void OnPhysicsCollision( CollisionEventData eventData )
+	//{
+	//	Log.Info( "Run" );
+	//	if ( !IsServer || IsTriggered ) return;
+
+	//	var other = eventData.Other;
+
+	//	if ( other.Entity is not SpleefPlayer player ) return;
+
+	//	StartCountdown();
+	//}
+
+	public override void StartTouch( Entity other )
 	{
-		if ( !IsServer || IsTriggered ) return;
-
-		var other = eventData.Other;
-
-		if ( other.Entity is not Player player ) return;
-
-		StartCountdown();
+		base.StartTouch( other );
+		Log.Info( "touch" );
 	}
 
 	private RealTimeUntil ExpireCountdown { get; set; }
