@@ -9,6 +9,11 @@ namespace Alydus.Spleef
 	{
 		public Spleef()
 		{
+			if ( IsServer )
+			{
+				// Create the HUD
+				_ = new SpleefHud();
+			}
 		}
 
 		/// <summary>
