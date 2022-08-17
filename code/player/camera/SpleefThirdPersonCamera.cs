@@ -18,7 +18,7 @@ namespace Alydus.Spleef
 			Rotation = Rotation.FromAxis( Vector3.Up, 4 ) * Input.Rotation;
 
 			float distance = 200.0f * pawn.Scale;
-			targetPos = Position + Input.Rotation.Right * (pawn.CollisionBounds.Maxs * pawn.Scale);
+			targetPos = Position + Input.Rotation.Right * ((pawn.CollisionBounds.Maxs.x + 15) * pawn.Scale);
 			targetPos += Input.Rotation.Forward * -distance;
 
 			var tr = Trace.Ray( Position, targetPos )
