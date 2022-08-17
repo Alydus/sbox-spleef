@@ -19,7 +19,7 @@ namespace Alydus.Spleef
 			base.ClientJoined( client );
 
 			// Create a pawn for this client to play with
-			var player = new SpleefPlayer();
+			var player = new SpleefPlayer(client);
 			player.Respawn();
 
 			client.Pawn = player;
