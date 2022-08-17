@@ -38,6 +38,7 @@ namespace Alydus.Spleef
 			CameraMode = new SpleefThirdPersonCamera();
 
 			EnableDrawing = true;
+			EnableAllCollisions = true;
 
 			Clothing.DressEntity(this, false);
 
