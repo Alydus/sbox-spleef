@@ -1,12 +1,15 @@
-
-.codegen/
-obj/
-code/accesslist.txt
+# s&box related
+code/*.csproj
+code/obj
+code/Properties
 .intermediate
+_bakeresourcecache
 tools_asset_info.bin
-code/Properties/launchSettings.json
-dm98.csproj
-Properties/launchSettings.json
-*.csproj
-.vs
-*.generated.*
+tools_thumbnail_cache.bin
+*.los
+
+# vscode
+.vscode
+*/.vs/*
+
+*.vtex_c
