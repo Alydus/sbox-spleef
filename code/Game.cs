@@ -3,11 +3,7 @@
 namespace Alydus.Spleef
 {
 	/// <summary>
-	/// This is your game class. This is an entity that is created serverside when
-	/// the game starts, and is replicated to the client. 
-	/// 
-	/// You can use this to create things like HUDs and declare which player class
-	/// to use for spawned players.
+	/// Alydus Spleef
 	/// </summary>
 	public partial class Spleef : Sandbox.Game
 	{
@@ -16,7 +12,7 @@ namespace Alydus.Spleef
 		}
 
 		/// <summary>
-		/// A client has joined the server. Make them a pawn to play with
+		/// A client has joined the server. Create SpleefPlayer pawn.
 		/// </summary>
 		public override void ClientJoined( Client client )
 		{
@@ -27,14 +23,12 @@ namespace Alydus.Spleef
 			player.Respawn();
 
 			client.Pawn = player;
-
-		
 		}
 
-		/*public override void DoPlayerNoclip(Client client)
+		public override void DoPlayerNoclip(Client client)
 		{
-			// Do nothing. The player can't noclip in this mode.
-		}*/
+			// Noclip not allowed
+		}
 	}
 
 }
