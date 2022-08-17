@@ -19,19 +19,10 @@ namespace Alydus.Spleef
 			Model = WorldModel;
 
 			Controller = new WalkController();
-
-			if ( DevController is NoclipController )
-			{
-				DevController = null;
-			}
-
 			Animator = new StandardPlayerAnimator();
-
-			EnableHideInFirstPerson = true;
-			EnableShadowInFirstPerson = false;
-			EnableDrawing = true;
-
 			CameraMode = new SpleefThirdPersonCamera();
+
+			EnableDrawing = true;
 
 			base.Respawn();
 		}
