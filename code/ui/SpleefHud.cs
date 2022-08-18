@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Alydus.Spleef
 {
+	/// <summary>
+	/// Initializes all required HUD elements for the Spleef gamemode.
+	/// </summary>
 	[Library]
 	public partial class SpleefHud : HudEntity<RootPanel>
 	{

@@ -1,12 +1,17 @@
 ﻿using SandboxEditor;
 using Sandbox;
 using Alydus.Spleef;
+using Spleef.weapons;
 
 namespace Spleef.entities;
 
-//[Library( "platform" )]
+/// <summary>
+/// Represents a Spleef platform.<br/>
+/// <br/>
+/// This platform is activated in gameplay by hitting it with the <see cref="Crowbar"/>
+/// </summary>
+
 [HammerEntity, Model, RenderFields, VisGroup( VisGroup.Physics )]
-//[Title( "Platform" ), Category( "Gameplay" ), Icon( "chair" )]
 
 public partial class PlatformHit : APlatform
 {

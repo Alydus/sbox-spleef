@@ -6,6 +6,9 @@ using Spleef.entities;
 namespace Alydus.Spleef
 {
 
+	/// <summary>
+	/// Default player pawn for the Spleef gamemode.
+	/// </summary>
 	public partial class SpleefPlayer : Player
 	{
 		public static readonly Model WorldModel = Model.Load("models/citizen/citizen.vmdl");
@@ -14,6 +17,7 @@ namespace Alydus.Spleef
 		/// The clothing container is what dresses the citizen
 		/// </summary>
 		public ClothingContainer Clothing = new();
+
 		public SpleefPlayer()
 		{
 			//Inventory = new Inventory( this );
@@ -23,11 +27,6 @@ namespace Alydus.Spleef
 		{
 			// Load clothing from client data
 			Clothing.LoadFromClient(cl);
-		}
-
-		public override void Spawn()
-		{
-			base.Spawn();
 		}
 
 		public override void Respawn()

@@ -2,6 +2,9 @@
 
 namespace Alydus.Spleef
 {
+	/// <summary>
+	/// Represents the custom third-person camera employed in the Spleef gamemode.
+	/// </summary>
 	class SpleefThirdPersonCamera : Sandbox.CameraMode
 	{
 		public override void Update()

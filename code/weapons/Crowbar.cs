@@ -1,8 +1,7 @@
 ﻿using Sandbox;
-using Alydus.Spleef;
 using Spleef.entities;
 
-namespace Speef.weapons;
+namespace Spleef.weapons;
 
 public partial class Crowbar : BaseWeapon
 {

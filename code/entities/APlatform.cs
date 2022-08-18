@@ -2,11 +2,20 @@
 
 namespace Spleef.entities;
 
+/// <summary>
+/// An abstract class that makes creating platform entities less repetitive.
+/// </summary>
 public abstract partial class APlatform : BasePhysics, IPlatform
 {
+	/// <summary>
+	/// Returns <see langword="true"/> if the platform has been activated for removal.
+	/// </summary>
 	[Net]
 	public bool IsTriggered { get; private set; }
 
+	/// <summary>
+	/// The length of time this platform takes to be removed after it is triggered.
+	/// </summary>
 	protected float ExpireTime = 3f;
 
 	private TimeUntil ExpireCountdown { get; set; }
@@ -39,6 +48,10 @@ public abstract partial class APlatform : BasePhysics, IPlatform
 		EnableSolidCollisions = true;
 	}
 
+	/// <summary>
+	/// Sets the platform's model and configures the appropriate physics.
+	/// </summary>
+	/// <param name="modelName">The path of the prop you want to use.</param>
 	protected void ConfigureModel(string modelName)
 	{
 		SetModel(modelName);
