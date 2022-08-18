@@ -16,6 +16,7 @@ namespace Alydus.Spleef
 		public ClothingContainer Clothing = new();
 		public SpleefPlayer()
 		{
+			//Inventory = new Inventory( this );
 		}
 
 		public SpleefPlayer(Client cl) : this()
@@ -40,7 +41,7 @@ namespace Alydus.Spleef
 			EnableDrawing = true;
 			EnableAllCollisions = true;
 
-			Clothing.DressEntity(this, false);
+			Clothing.DressEntity(this);
 
 			base.Respawn();
 		}
@@ -50,25 +51,23 @@ namespace Alydus.Spleef
 			PawnController controller = GetActiveController();
 			controller?.Simulate( cl, this, GetActiveAnimator() );
 
-			if ( Host.IsServer )
-			{
-				if ( Input.Pressed( InputButton.PrimaryAttack ) )
-				{
-					var tr = Trace.Ray( EyePosition, EyePosition + EyeRotation.Forward * 4000 ).WorldOnly().Run();
+			//if ( IsServer )
+			//{
+			//	if ( Input.Pressed( InputButton.PrimaryAttack ) )
+			//	{
+			//		var tr = Trace.Ray( EyePosition, EyePosition + EyeRotation.Forward * 4000 ).WorldOnly().Run();
 
-					if ( tr.Hit )
-					{
-						var ent = new Platform
-						{
-							Position = tr.EndPosition,
-							Rotation = Rotation.From( 0f, EyeRotation.Yaw(), 0f )
-						};
+			//		if ( tr.Hit )
+			//		{
+			//			new PlatformWalk
+			//			{
+			//				Position = tr.EndPosition,
+			//				Rotation = Rotation.From( 0f, EyeRotation.Yaw(), 0f )
+			//			};
+			//		}
 
-						ent.SetModel( "models/citizen_props/crate01.vmdl" );
-					}
-
-				}
-			}
+			//	}
+			//}
 		}
 
 		public override void OnKilled()

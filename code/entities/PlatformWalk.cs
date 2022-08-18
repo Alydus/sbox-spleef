@@ -7,7 +7,7 @@ namespace Spleef.entities;
 //[Library( "platform" )]
 [HammerEntity, Model, RenderFields, VisGroup( VisGroup.Physics )]
 //[Title( "Platform" ), Category( "Gameplay" ), Icon( "chair" )]
-public partial class Platform : BasePhysics
+public partial class PlatformWalk : BasePhysics
 {
 	[Net]
 	public bool IsTriggered { get; private set; }
@@ -21,8 +21,7 @@ public partial class Platform : BasePhysics
 		var modelName = "models/citizen_props/crate01.vmdl";
 
 		SetModel( modelName );
-
-		SetupPhysicsFromModel( PhysicsMotionType.Static, true );
+		SetupPhysicsFromModel( PhysicsMotionType.Keyframed );
 		EnableSelfCollisions = false;
 
 		var trigger = new ModelEntity
@@ -34,6 +33,15 @@ public partial class Platform : BasePhysics
 			Transmit = TransmitType.Never,
 			EnableSelfCollisions = false
 		};
+
+		//var trigger = new BaseTrigger
+		//{
+		//	Parent = this,
+		//	Position = Position,
+		//	Rotation = Rotation,
+		//};
+
+		trigger.SetModel( modelName );
 	}
 
 	//protected override void OnPhysicsCollision( CollisionEventData eventData )
@@ -51,7 +59,9 @@ public partial class Platform : BasePhysics
 	public override void StartTouch( Entity other )
 	{
 		base.StartTouch( other );
-		Log.Info( "touch" );
+
+		if (IsServer)
+			Log.Info( "touch" );
 	}
 
 	private RealTimeUntil ExpireCountdown { get; set; }
@@ -64,10 +74,6 @@ public partial class Platform : BasePhysics
 	public override void Simulate( Client cl )
 	{
 		base.Simulate( cl );
-
-		if ( ExpireCountdown < 0 ) return;
-
-		Delete();
 	}
 }
 
